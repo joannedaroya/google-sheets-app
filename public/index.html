@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Sheets Exercise</title>
+</head>
+<style type="text/css">
+	#map {
+		height: 100%;
+	}
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: grey;
+	}
+</style>
+<body>
+	<div id="map"></div>
+	<script>
+		function initMap() {
+			let map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 6,
+				center: {lat: 12.879721, lng: 121.774017}
+			});
+
+			fetch('http://localhost:8000/data.json')
+			.then(res => res.json())
+			.then(data => data.map(element => {
+				let coordinates = {
+					lng: parseFloat(element.lng),
+					lat: parseFloat(element.lat)
+				};
+
+				let contentString = `
+				<div id="content">
+					<p><small>Data as of February 2, 2017</small></p>
+					<h3 id="firstHeading" class="firstHeading">${element.name}</h3>
+					<div id="bodyContent">
+						<b>School ID</b>: ${element.school_id}<br/>
+						<b>Address</b>: ${element.municipality}, ${element.province}, ${element.region}<br/>
+						<b>Year Established</b>: ${element.year_established}<br/>
+						<b>Type</b>: ${element.school_type}, ${element.type_sub_classification}<br/>
+						<b>Elementary Student Population</b>: ${element.population}
+					</div>
+				</div>
+				`;
+
+				let infowindow = new google.maps.InfoWindow({
+				  content: contentString
+				});
+
+				let name = new google.maps.InfoWindow({
+					content: element.name
+				});
+
+				let marker = new google.maps.Marker({
+					position: coordinates,
+					icon: {
+						path: google.maps.SymbolPath.CIRCLE,
+						scale: 6,
+						fillColor: '#FF0000',
+						fillOpacity: 0.8,
+						strokeColor: '#FFFFFF',
+						strokeWeight: 1
+					},
+					map: map
+				});
+				marker.addListener('click', () => {
+					infowindow.open(map, marker);
+				});
+				marker.addListener('mouseover', () => {
+					name.open(map, marker);
+				});
+				marker.addListener('mouseout', () => {
+					name.close(map, marker);
+				});
+			}))
+			.catch(err => console.log(err))
+		}
+	</script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+</body>
+</html>
