@@ -30,10 +30,10 @@ When it's your first time to run your program on Node, the command prompt will g
 ### Google Spreadsheet
 When creating your spreadsheet, take note that the first row will be the header row. The header row will be the "keys" to the json object.
 
-### `getData(spreadsheetId, callback, worksheetName);`
+### getData(spreadsheetId, callback, worksheetName);
 
 * `spreadsheetId`: This parameter is required in order to successfully convert to JSON. You can find your spreadsheet's ID by looking at the url: `https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit#gid=0`
-* `callback`: This parater calls a callback function.
+* `callback`: This parameter calls a callback function.
 * `worksheetName`: This parameter has a default value of string `'Sheet1'`, which is the default name of the Spreadsheet's worksheet. If you need to call a different worksheet or if you renamed the default name, you can insert the name of the worksheet to this parameter.
 
 Sample code for a different worksheet/renamed worksheet:
