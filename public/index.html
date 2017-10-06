@@ -13,6 +13,7 @@
 		padding: 0;
 		background-color: grey;
 	}
+	#bodyContent { width: 250px }
 </style>
 <body>
 	<div id="map"></div>
@@ -25,7 +26,7 @@
 
 			fetch('http://localhost:8000/data.json')
 			.then(res => res.json())
-			.then(data => data.map(element => {
+			.then(data => data.content.map(element => {
 				let coordinates = {
 					lng: parseFloat(element.lng),
 					lat: parseFloat(element.lat)
@@ -33,14 +34,14 @@
 
 				let contentString = `
 				<div id="content">
-					<p><small>Data as of February 2, 2017</small></p>
 					<h3 id="firstHeading" class="firstHeading">${element.name}</h3>
 					<div id="bodyContent">
-						<b>School ID</b>: ${element.school_id}<br/>
-						<b>Address</b>: ${element.municipality}, ${element.province}, ${element.region}<br/>
-						<b>Year Established</b>: ${element.year_established}<br/>
-						<b>Type</b>: ${element.school_type}, ${element.type_sub_classification}<br/>
-						<b>Elementary Student Population</b>: ${element.population}
+						School ID: ${element.school_id}<br/>
+						Address: ${element.municipality}, ${element.province}, ${element.region}<br/>
+						Year Established: ${element.year_established}<br/>
+						Type: ${element.school_type}, ${element.type_sub_classification}<br/>
+						Elementary Student Population: ${element.population}
+						<p><small>Data as of February 2, 2017</small></p>
 					</div>
 				</div>
 				`;

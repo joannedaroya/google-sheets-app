@@ -8,7 +8,7 @@ let TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 let TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
 
-exports.getData = function(spreadsheetId, callback, worksheetName = 'Sheet1') {
+module.exports = function getData(spreadsheetId, callback, worksheetName = 'Sheet1') {
   fs.readFile('client_secret.json', function processClientSecrets(err, content) {
     if (err) {
       console.log('Error loading client secret file: ' + err);
@@ -101,7 +101,15 @@ exports.getData = function(spreadsheetId, callback, worksheetName = 'Sheet1') {
           return result;
         });
 
-        callback(null,data);
+        let date = new Date();
+        let obj = {
+          api: 'Google Sheets API',
+          spreadsheet_id: spreadsheetId,
+          date_retrieved: date,
+          content: data
+        };
+
+        callback(null,obj);
       }
     });
   }
