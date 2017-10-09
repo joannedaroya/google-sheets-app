@@ -1,7 +1,7 @@
 Google Sheets APP
 ================
 
-Read a Google Spreadsheet file and convert it into a JSON file using Node.js.
+Read a Google Spreadsheet file and convert it into a JSON file using Node.js. [Here](http://google-sheets-app.openode.io/) is a sample app showing Elementary Schools from the Philippines using data from a spreadsheet. Deployed using [openode.io](https://openode.io).
 
 How?
 ---

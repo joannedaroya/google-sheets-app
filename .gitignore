@@ -55,3 +55,4 @@ lib/
 
 client_secret.json
 config.js
+sheets.googleapis.com-nodejs-quickstart.json

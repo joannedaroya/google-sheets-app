@@ -24,7 +24,7 @@
 				center: {lat: 12.879721, lng: 121.774017}
 			});
 
-			fetch('http://localhost:8000/data.json')
+			fetch('/data')
 			.then(res => res.json())
 			.then(data => data.content.map(element => {
 				let coordinates = {

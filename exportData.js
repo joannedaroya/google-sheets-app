@@ -6,7 +6,7 @@ const fs = require('fs'),
 let SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 let TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
-let TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
+let TOKEN_PATH = 'sheets.googleapis.com-nodejs-quickstart.json';
 
 module.exports = function getData(spreadsheetId, callback, worksheetName = 'Sheet1') {
   fs.readFile('client_secret.json', function processClientSecrets(err, content) {
